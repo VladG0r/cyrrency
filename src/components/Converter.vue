@@ -35,8 +35,7 @@
               class="styled-select"
               @input="selectMultiple($event)"
             >
-              <template #tag><span></span></template
-              ><template #selection="{ isOpen }">
+              <template #selection="{ isOpen }">
                 <span
                   v-if="selectedCount && !isOpen"
                   class="multiselect__single"
@@ -79,6 +78,7 @@ export default Vue.extend({
         label: "key",
         trackBy: "key",
         selectLabel: "select",
+        maxHeight: "600",
       },
     };
   },
@@ -126,14 +126,18 @@ export default Vue.extend({
         background: $primary;
       }
     }
+    .multiselect__tags-wrap {
+      display: none;
+    }
   }
 }
 
 .selects {
   display: flex;
-  div {
+  > div {
     flex: 1;
     min-width: 220px;
+    max-width: 220px;
     &:first-child {
       margin-right: 16px;
     }
