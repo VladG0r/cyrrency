@@ -7,7 +7,7 @@
     </tr>
     <template v-if="activeRates.length">
       <tr v-for="rate in activeRates" :key="rate.key">
-        <td>1</td>
+        <td>{{ curSymbols[rate.key] }}</td>
         <td>{{ rate.key }}</td>
         <td>{{ rate.value }}</td>
       </tr>
@@ -20,11 +20,12 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapGetters } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default Vue.extend({
   name: "DataTable",
   computed: {
+    ...mapState(["curSymbols"]),
     ...mapGetters(["activeRates"]),
   },
 });
