@@ -18,7 +18,7 @@
   </table>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from "vue";
 import { mapState, mapGetters } from "vuex";
 
