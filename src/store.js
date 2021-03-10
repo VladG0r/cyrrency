@@ -7,7 +7,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     current: "EUR",
-    rates: {},
+    ratesArr: [],
+  },
+  getters: {
+    activeRates: ({ ratesArr }) => ratesArr.filter((e) => e.active),
   },
   mutations: {
     setValue(state, payload) {
@@ -15,14 +18,29 @@ export default new Vuex.Store({
         state[payload.field] = payload.value;
       }
     },
+    toggleCurrency({ ratesArr }, arr) {
+      ratesArr.forEach((el) => {
+        if (arr.includes(el)) {
+          el.active = true;
+        } else {
+          el.active = false;
+        }
+      });
+    },
   },
   actions: {
-    async getRates({ commit }) {
-      const result = await api.get("https://api.ratesapi.io/api/latest");
+    async getRates({ state: { current }, commit }) {
+      const result = await api.get(
+        `https://api.ratesapi.io/api/latest?base=${current}`
+      );
       if (result.isSuccess && result.data && result.data.rates) {
         commit("setValue", {
-          field: "rates",
-          value: Object.assign({}, result.data.rates),
+          field: "ratesArr",
+          value: Object.keys(result.data.rates).map((e) => ({
+            key: e,
+            value: result.data.rates[e],
+            active: true,
+          })),
         });
       }
     },

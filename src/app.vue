@@ -33,17 +33,36 @@ body {
   font-family: $main-font;
   font-size: 14px;
 }
+
 .container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+
 header,
 footer {
   padding: 15px 30px;
   background: $primary;
 }
+
 main {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
 }
 </style>
