@@ -12,6 +12,7 @@ export default new Vuex.Store({
     date: today(),
     ratesArr: [],
     curSymbols: {
+      EUR: "€",
       GBP: "£",
       IDR: "Rp",
       HKD: "$",
