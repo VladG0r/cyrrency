@@ -24,9 +24,7 @@ export default {
 </script>
 
 <style lang="scss">
-$primary: #6893d3;
-
-$main-font: Arial, "Helvetica Neue", Helvetica, sans-serif;
+@import "src/styles/variables.scss";
 
 html,
 body {

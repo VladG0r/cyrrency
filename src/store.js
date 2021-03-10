@@ -5,9 +5,9 @@ import api from "./plugins/api.js";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: { rates: {} },
-  getters: {
-    storeRates: (s) => s.rates,
+  state: {
+    current: "EUR",
+    rates: {},
   },
   mutations: {
     setValue(state, payload) {
