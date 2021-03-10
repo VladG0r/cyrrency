@@ -57,6 +57,10 @@ main {
   margin-top: 16px;
 }
 
+.mt-30 {
+  margin-top: 30px;
+}
+
 .row {
   display: flex;
 }
@@ -64,5 +68,6 @@ main {
 .col {
   display: flex;
   flex-direction: column;
+  padding: 0 10px;
 }
 </style>

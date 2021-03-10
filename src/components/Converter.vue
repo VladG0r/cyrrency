@@ -49,7 +49,7 @@
         <data-table class="mt-16" />
       </div>
       <div class="col">
-        calendar
+        <calendar @input="getRates" class="mt-30" />
       </div>
     </div>
     <pre>{{ rates }}</pre>
@@ -60,7 +60,8 @@
 import Vue from "vue";
 import Multiselect from "vue-multiselect";
 import DataTable from "./DataTable.vue";
-import { mapState, mapGetters, mapMutations } from "vuex";
+import Calendar from "./Calendar.vue";
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 export default Vue.extend({
   name: "Converter",
@@ -70,6 +71,7 @@ export default Vue.extend({
   components: {
     Multiselect,
     DataTable,
+    Calendar,
   },
   data() {
     return {
@@ -83,9 +85,6 @@ export default Vue.extend({
   computed: {
     ...mapState(["rates", "current", "ratesArr"]),
     ...mapGetters(["activeRates"]),
-    // options() {
-    //   return Object.keys(this.rates);
-    // },
     activeRates() {
       return this.ratesArr.filter((el) => el.active);
     },
@@ -94,14 +93,15 @@ export default Vue.extend({
     },
   },
   created() {
-    this.$store.dispatch("getRates");
+    this.getRates();
   },
   methods: {
+    ...mapActions(["getRates"]),
     ...mapMutations(["setValue", "toggleCurrency"]),
     selectCurrent(evt) {
       if (evt && evt.key) {
         this.setValue({ field: "current", value: evt.key });
-        this.$store.dispatch("getRates");
+        this.getRates();
       }
     },
     selectMultiple(arr) {
@@ -115,8 +115,6 @@ export default Vue.extend({
 @import "src/styles/variables.scss";
 
 .converter {
-  width: 500px;
-  max-width: 100%;
   padding: 30px;
 }
 
@@ -141,7 +139,9 @@ export default Vue.extend({
     }
   }
   label {
-    line-height: 2;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
   }
 }
 </style>

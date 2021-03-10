@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "v-calendar": "^2.2.4",
     "vue-multiselect": "^2.1.6",
     "vuex": "^3.6.2"
   }

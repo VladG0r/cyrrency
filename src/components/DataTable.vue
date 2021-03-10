@@ -5,10 +5,15 @@
       <th>Currency</th>
       <th>Value</th>
     </tr>
-    <tr v-for="rate in activeRates" :key="rate.key">
-      <td>1</td>
-      <td>{{ rate.key }}</td>
-      <td>{{ rate.value }}</td>
+    <template v-if="activeRates.length">
+      <tr v-for="rate in activeRates" :key="rate.key">
+        <td>1</td>
+        <td>{{ rate.key }}</td>
+        <td>{{ rate.value }}</td>
+      </tr>
+    </template>
+    <tr v-else>
+      <td colspan="3"><center>No data</center></td>
     </tr>
   </table>
 </template>

@@ -4,13 +4,21 @@ import api from "./plugins/api.js";
 
 Vue.use(Vuex);
 
+const today = () => new Date();
+
 export default new Vuex.Store({
   state: {
     current: "EUR",
+    date: today(),
     ratesArr: [],
   },
   getters: {
     activeRates: ({ ratesArr }) => ratesArr.filter((e) => e.active),
+    dateEn: ({ date }) =>
+      `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+        2,
+        0
+      )}-${String(date.getDate()).padStart(2, 0)}`,
   },
   mutations: {
     setValue(state, payload) {
@@ -29,9 +37,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async getRates({ state: { current }, commit }) {
+    async getRates({ state: { current, date }, getters: { dateEn }, commit }) {
       const result = await api.get(
-        `https://api.ratesapi.io/api/latest?base=${current}`
+        `https://api.ratesapi.io/api/${dateEn}?base=${current}`
       );
       if (result.isSuccess && result.data && result.data.rates) {
         commit("setValue", {
