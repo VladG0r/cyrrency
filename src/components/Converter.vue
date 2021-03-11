@@ -51,7 +51,6 @@
         <calendar @input="getRates" class="mt-30" />
       </div>
     </div>
-    <pre>{{ rates }}</pre>
   </div>
 </template>
 
