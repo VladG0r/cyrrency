@@ -78,7 +78,7 @@ export default Vue.extend({
         label: "key",
         trackBy: "key",
         selectLabel: "select",
-        maxHeight: "600",
+        maxHeight: 600,
       },
     };
   },
